@@ -1,26 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./Banner.module.css";
-import axios from "../../axios";
-import request from "../../request";
+import banner from "../../assets/banner1.png";
+import Form from "../Form/Form";
 
 const Banner = () => {
-  const [movie, setMovie] = useState();
+  const [showForm, setShowForm] = useState(false);
 
-  useEffect(() => {
-    async function fetchData() {
-      const req = await axios.get(request.fetchNetflixOriginals);
-      setMovie(
-        req.data.results[
-          Math.floor(Math.random() * req.data.results.length - 1)
-        ]
-      );
-      return req;
-    }
-    fetchData();
-  }, []);
+  const showFormHandler = () => {
+    setShowForm(true);
+  };
 
-  const truncate = (str, n) => {
-    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  const closeFormHandler = () => {
+    setShowForm(false);
   };
 
   return (
@@ -29,26 +20,33 @@ const Banner = () => {
         className={styles.banner}
         style={{
           backgroundSize: "cover",
-          backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
+          backgroundImage: `url(${banner})`,
           backgroundPosition: "center-center",
         }}
       >
         <div className={`${styles["banner-contents"]}`}>
-          <h1 className={styles["banner-title"]}>
-            {movie?.title || movie?.name || movie?.original_name}
-          </h1>
+          <h1 className={styles["banner-title"]}>HBD Cantik Ak</h1>
           <div className={`${styles["banner-buttons"]}`}>
-            <button className={`${styles["banner-button"]}`}>Play</button>
-            <button className={`${styles["banner-button"]}`}>My List</button>
+            <button
+              className={`${styles["banner-button"]}`}
+              onClick={showFormHandler}
+              required
+            >
+              Masukin wish ayangg
+            </button>
           </div>
 
           <h1 className={`${styles["banner-description"]}`}>
-            {truncate(movie?.overview, 150)}
+            Selamat ulang tahun, tokoh kesayanganku. Semoga semua hal-hal baik
+            yang kamu semogakan tercapai diumur sekarang, aku cuma mau kamu
+            sehat terus jangan maksa kurus. Cus u already beautiful u dont need
+            to be skinny to be pretty. And lemme let make you happy
           </h1>
         </div>
 
         <div className={`${styles["banner-fade"]}`} />
       </header>
+      {showForm && <Form onClose={closeFormHandler} />}
     </div>
   );
 };

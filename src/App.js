@@ -2,7 +2,8 @@ import "./App.css";
 import Banner from "./component/Banner/Banner";
 import Navbar from "./component/Navbar/Navbar";
 import Row from "./component/Row/Row";
-import request from "./request";
+import Card from "./component/Row/Card";
+import { pbBogor, pbCantik, pbKcmt, pbKuncir, pbOren, pbZoom } from "./data";
 
 function App() {
   return (
@@ -11,25 +12,53 @@ function App() {
 
       <Banner />
 
-      <Row
-        title="NETFLIX ORIGINAL"
-        fetchUrl={request.fetchNetflixOriginals}
-        isLargeRow
-      />
+      <Row title="PB Ke Bogor">
+        {pbBogor.map((data) => (
+          <>
+            <Card key={data.id} img={data.img} wish={data.wish} />
+          </>
+        ))}
+      </Row>
 
-      <Row title="Trending Now" fetchUrl={request.fetchTrending} />
+      <Row title="PB kawai desune">
+        {pbZoom.map((data) => (
+          <>
+            <Card key={data.id} img={data.img} wish={data.wish} />
+          </>
+        ))}
+      </Row>
 
-      <Row title="TOP RATED" fetchUrl={request.fetchTopRated} />
+      <Row title="PB ke Bandoeng">
+        {pbKuncir.map((data) => (
+          <>
+            <Card key={data.id} img={data.img} wish={data.wish} />
+          </>
+        ))}
+      </Row>
 
-      <Row title="Action Movies" fetchUrl={request.fetchActionMovies} />
+      <Row title="PB pake baju the jack">
+        {pbOren.map((data) => (
+          <>
+            <Card key={data.id} img={data.img} wish={data.wish} />
+          </>
+        ))}
+      </Row>
 
-      <Row title="Comedy Movies" fetchUrl={request.fetchComedyMovies} />
+      <Row title="PB lucu bgt ga ngerti lagi">
+        {pbKcmt.map((data) => (
+          <>
+            <Card key={data.id} img={data.img} wish={data.wish} />
+          </>
+        ))}
+      </Row>
 
-      <Row title="Horror Movies" fetchUrl={request.fetchHorrorMovies} />
-
-      <Row title="Romance Movies" fetchUrl={request.fetchRomanceMovies} />
-
-      <Row title="Documentaries" fetchUrl={request.fetchDocumentaries} />
+      <Row title="PB si paling cantik">
+        {pbCantik.map((data) => (
+          <>
+            <Card key={data.id} img={data.img} wish={data.wish} />
+          </>
+        ))}
+      </Row>
     </div>
   );
 }

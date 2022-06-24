@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import ReactAudioPlayer from "react-audio-player";
 import styles from "./Navbar.module.css";
+import audio from "../../assets/Sal Priadi.mp3";
 
 const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
@@ -29,6 +31,15 @@ const Navbar = () => {
         className={styles.avatar}
         src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
         alt="AVATAR"
+      />
+      <ReactAudioPlayer
+        style={{
+          position: "relative",
+          left: "38%",
+        }}
+        src={audio}
+        autoPlay
+        controls
       />
     </div>
   );
